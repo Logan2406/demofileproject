@@ -14,7 +14,8 @@ def upload():
     if(request.method=='POST'):
         ff = request.files['file1']
         ff.save(app.config['UPLOAD_FOLDER']+"\\"+ff.filename)
-        [pdf_files,img_file]=print_hi(ff.filename)
+        print("File Uploaded")
+        [pdf_files,img_files]=print_hi(ff.filename)
         print(pdf_files)
         print(img_files)
 
@@ -27,4 +28,4 @@ def download(filename):
 
 if(__name__=="__main__"):
     app.debug = True
-    app.run()
+    app.run(port=8000)

@@ -16,9 +16,9 @@ def checkOrientation(ur_x,ul_x,ul_y,ll_y):
         return('Portrait')
 
 def pdfToImages(base):
-    images = convert_from_path(conf+"//"+'rotated_pdf.pdf',500)
+    images = convert_from_path(conf+"/"+'rotated_pdf.pdf',500)
     for i in range(len(images)):
-        images[i].save(conf+"//"+base+"//"+'Img_page_' + str(i+1) + '.jpg', 'JPEG')
+        images[i].save(conf+"/"+base+"/"+'Img_page_' + str(i+1) + '.jpg', 'JPEG')
         img_files.append(conf+"\\"+base+"\\"+'Img_page_' + str(i+1) + '.jpg')
 
 
@@ -30,7 +30,7 @@ def print_hi(filename):
 
     print('Welcome the Application')
     try:
-        pdf = PdfFileReader(conf+"//"+filename)
+        pdf = PdfFileReader(conf+"/"+filename)
     except:
         print('Error occured while importing')
         return 0
@@ -39,8 +39,8 @@ def print_hi(filename):
 
 
     base = filename.split(".")[0]
-    if(not os.path.isdir(conf+"//"+base)):
-        os.makedirs(conf+"//"+base)
+    if(not os.path.isdir(conf+"/"+base)):
+        os.makedirs(conf+"/"+base)
 
     for i in range(pdf.numPages):
         page = pdf.getPage(i).mediaBox
@@ -49,19 +49,19 @@ def print_hi(filename):
         if(ori=='Landscape'):
             pageDemo.rotateCounterClockwise(90)
         writer.addPage(pageDemo)
-    out_file = open(conf+"//"+'rotated_pdf.pdf','wb')
+    out_file = open(conf+"/"+'rotated_pdf.pdf','wb')
     writer.write(out_file)
     out_file.close()
 
     try:
-        pdf = PdfFileReader(conf+"//"+'rotated_pdf.pdf')
+        pdf = PdfFileReader(conf+"/"+'rotated_pdf.pdf')
     except:
         print('Error occured while importing')
         return 0
 
     for i in range(pdf.numPages):
         page = pdf.getPage(i)
-        out_file = open(conf+"//"+base+"//"+f'Pdf_page_{i+1}.pdf', 'wb')
+        out_file = open(conf+"/"+base+"/"+f'Pdf_page_{i+1}.pdf', 'wb')
         pdf_files.append(conf+"\\"+base+"\\"+f'Pdf_page_{i+1}.pdf')
         writer = PdfFileWriter()
         writer.addPage(page)
@@ -69,6 +69,6 @@ def print_hi(filename):
         out_file.close()
 
     pdfToImages(base)
-    os.remove(conf+"//"+'rotated_pdf.pdf')
+    os.remove(conf+"/"+'rotated_pdf.pdf')
 
     return [pdf_files,img_files]
