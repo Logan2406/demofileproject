@@ -13,7 +13,7 @@ app.config['UPLOAD_FOLDER']=os.path.join(os.getcwd(),"static","files")
 def upload():
     if(request.method=='POST'):
         ff = request.files['file1']
-        ff.save(app.config['UPLOAD_FOLDER']+"\\"+ff.filename)
+        ff.save(app.config['UPLOAD_FOLDER']+"/"+ff.filename)
         print("File Uploaded")
         [pdf_files,img_files]=print_hi(ff.filename)
         print(pdf_files)
