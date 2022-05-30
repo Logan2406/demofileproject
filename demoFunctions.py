@@ -16,7 +16,7 @@ def checkOrientation(ur_x,ul_x,ul_y,ll_y):
         return('Portrait')
 
 def pdfToImages(base):
-    images = convert_from_path(conf+"/"+'rotated_pdf.pdf',poppler_path="")
+    images = convert_from_path(conf+"/"+'rotated_pdf.pdf')
     for i in range(len(images)):
         images[i].save(conf+"/"+base+"/"+'Img_page_' + str(i+1) + '.jpg', 'JPEG')
         img_files.append(conf+"\\"+base+"\\"+'Img_page_' + str(i+1) + '.jpg')
