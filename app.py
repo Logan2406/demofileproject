@@ -26,4 +26,4 @@ def download(filename):
     return send_file(outfile,as_attachment=True)
 
 if(__name__=="__main__"):
-    app.run(debug=True,port=8000)
+    app.run()
